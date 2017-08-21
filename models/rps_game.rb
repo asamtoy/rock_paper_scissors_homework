@@ -1,3 +1,27 @@
+class Game
+  def initialize( rps1, rps2 )
+    @rps1 = rps1
+    @rps2 = rps2
+  end
+
+  def compare(rps1, rps2)
+    if rps1 == "rock" && rps2 == "paper"
+      result = "Player Two Wins!"
+    elsif rps1 == "rock" && rps2 == "scissors"
+      result = "Player One Wins!"
+    elsif rps1 == "paper" && rps2 == "scissors"
+      result = "Player Two Wins!"
+    elsif rps1 == "paper" && rps2 == "rock"
+      result = "Player One Wins!"
+    elsif rps1 == "scissors" && rps2 == "rock"
+      result = "Player Two Wins!"
+    elsif rps1 == "scissors" && prps2 == "paper"
+      result = "Player One Wins!"
+    else result =
+      "It's a tie!"
+    end
+  end
+end
 
 
 
