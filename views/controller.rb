@@ -1,25 +1,25 @@
-puts "Player One, your move.  What would you like to play: rock, paper or scissors?"
-player_1_move = gets.chomp.downcase
-# puts "Player Two, your move.  What would you like to play: rock, paper or scissors?"
-# player_2_move = gets.chomp.downcase
-choices = ["rock", "paper", "scissors"]
-player_2_move = choices.sample
-sleep(2)
-puts "The computer chooses #{player_2_move}."
-sleep(1)
-if player_1_move == "rock" && player_2_move == "paper"
-  puts "Player Two Wins!"
-elsif player_1_move == "rock" && player_2_move == "scissors"
-  puts "Player One Wins!"
-elsif player_1_move == "paper" && player_2_move == "scissors"
-  puts "Player Two Wins!"
-elsif player_1_move == "paper" && player_2_move == "rock"
-  puts "Player One Wins!"
-elsif player_1_move == "scissors" && player_2_move == "rock"
-  puts "Player Two Wins!"
-elsif player_1_move == "scissors" && player_2_move == "paper"
-  puts "Player One Wins!"
-else puts
-  "It's a tie!"
+require('sinatra')
+require('sinatra/contrib/all') if development?
+require_relative('./models/rps_game')
+require('json')
+
+get '/' do
+erb(:home)
+end
+
+get '/play/:rps1/:rps2' do
+  rps_game = Game.new(params[:rps1], params[:rps2])
+  @comparison = ()
+  erb( :result )
+
+end
+
+# MY GAME
+get '/add/:number1/:number2' do
+  calculator = Calculator.new(params[:number1].to_i(), params[:number2].to_i)
+  @answer = calculator.add()
+  # How we tell Sinatra that we want an ERB file: colon and the file name/folder
+  # For ERB, we use this line to include something:
+  erb( :result )
 
 end
